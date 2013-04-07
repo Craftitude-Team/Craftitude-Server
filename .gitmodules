@@ -1,0 +1,3 @@
+[submodule "Repositories"]
+	path = Repositories
+	url = https://github.com/Craftitude-Team/Craftitude-Repositories
