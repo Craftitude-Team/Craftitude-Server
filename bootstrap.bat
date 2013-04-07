@@ -24,8 +24,8 @@ if %errorlevel% neq 0 goto E_EXIT
 ::call check-hg     
 ::if %errorlevel% neq 0 goto E_EXIT 
 
-call init-svn https://yaml.svn.codeplex.com/svn/Main/dependencies/yaml
-::call init-svn http://luainterface.googlecode.com/svn/trunk/ dependencies/luainterface
+call init-svn https://yaml.svn.codeplex.com/svn/Main/ Dependencies/yaml
+::call init-svn http://luainterface.googlecode.com/svn/trunk/ Dependencies/luainterface
 call init-nuget
 
 xecho /a:%col_ok% Finished.
