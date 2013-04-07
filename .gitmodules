@@ -1,3 +1,6 @@
 [submodule "Repositories"]
 	path = Repositories
 	url = https://github.com/Craftitude-Team/Craftitude-Repositories
+[submodule "General"]
+	path = General
+	url = https://github.com/Craftitude-Team/Craftitude-CSharp-Classes.git
