@@ -42,8 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LocalRepository.cs" />
+    <Compile Include="Package.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\*.cs" />
+    <Compile Include="General\**\*.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Repositories\**\*.lua">
@@ -52,6 +54,16 @@
     <Content Include="Repositories\**\*.yml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="dependencies\sharpcompress\SharpCompress\SharpCompress.csproj">
+      <Project>{10a689cf-76a2-4a4f-96e4-553c33398438}</Project>
+      <Name>SharpCompress %28Libraries\SharpCompress\SharpCompress%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="dependencies\yaml\Core\Core.Net4.csproj">
+      <Project>{f9e90814-289a-4244-ab47-8acc29a03b07}</Project>
+      <Name>Core.Net4</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
