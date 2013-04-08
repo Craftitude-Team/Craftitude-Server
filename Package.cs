@@ -3,26 +3,36 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using YaTools.Yaml;
-using YaTools.Yaml.AbstractContracts;
 
 namespace Craftitude.Server
 {
     public class Package
     {
-        public LocalRepository Repository { get; set; }
-        public DirectoryInfo PackageDirectory { get; set; }
-        public YamlLanguage MetadataYaml { get; set; }
-
-        public Package(LocalRepository repository, string package)
+        public Package(Distribution distribution, string package)
         {
-            Repository = repository;
+            Distribution = distribution;
             PackageDirectory = Repository.RepositoryDirectory.CreateSubdirectory(package);
-            MetadataYaml = YamlLanguage.FileTo<
         }
 
-        public string PackageName { get { return PackageDirectory.Name; } }
-        public string Directory { get; set; }
-    }
+        public Distribution Distribution { get; set; }
+        public LocalRepository Repository { get { return Distribution.Repository; } }
+        public DirectoryInfo PackageDirectory { get; set; }
+        public string ID { get { return PackageDirectory.Name; } }
 
+        public PackageVersion GetVersion(string versionID)
+        {
+            return new PackageVersion(this, versionID);
+        }
+
+        public PackageVersion[] GetVersions()
+        {
+            return EnumerateVersions().ToArray();
+        }
+
+        public IEnumerable<PackageVersion> EnumerateVersions()
+        {
+            foreach (var versionDir in PackageDirectory.GetDirectories())
+                yield return GetVersion(versionDir.Name);
+        }
+    }
 }

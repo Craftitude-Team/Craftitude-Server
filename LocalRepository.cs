@@ -8,18 +8,22 @@ namespace Craftitude.Server
 {
     public class LocalRepository
     {
-        public DirectoryInfo RepositoryDirectory;
+        public DirectoryInfo RepositoryDirectory { get; set; }
+
+        public Distribution GetDistribution(string distribution)
+        {
+            return new Distribution(this, distribution);
+        }
+
+        public string ID { get { return RepositoryDirectory.Name; } }
 
         public LocalRepository(DirectoryInfo repositoryDir)
         {
             RepositoryDirectory = repositoryDir;
         }
 
-        public Package GetPackage(string packageName)
-        {
-        }
-
-        public Package[] GetPackages()
+        public LocalRepository(string repositoryDirPath)
+            : this(new DirectoryInfo(repositoryDirPath))
         {
         }
     }
